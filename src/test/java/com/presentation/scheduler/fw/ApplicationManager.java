@@ -2,6 +2,7 @@ package com.presentation.scheduler.fw;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,17 +59,15 @@ public class ApplicationManager {
 
 driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
         //wd.navigate().to(properties.getProperty("web.baseURL"));//"https://ilcarro-dev-v1.firebaseapp.com/"
-        logger.info("App version: " + driver.getCurrentUrl());//gradlew -Pbrowser=firefox -Ptarget-google clean regression
+     logger.info("App version: " + getAppVersion());//gradlew -Pbrowser=firefox -Ptarget-google clean regression
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-
         userHelper = new UserHelper(driver);
-
-
     }
 
-
+    public String getAppVersion() {
+      return driver.findElement(By.xpath("//*[@resource-id = 'com.example.svetlana.scheduler:id/app_version_res']")).getText();
+    }
     public void stop() {
         driver.quit();
     }

@@ -13,8 +13,8 @@ import java.io.IOException;
 public class HelperBase {
     AppiumDriver driver;
 
-    public HelperBase(AppiumDriver wdriver) {
-        this.driver = wdriver;
+    public HelperBase(AppiumDriver driver) {
+        this.driver = driver;
     }
 
     public void typeByCss(String cssSelector, String text) {
