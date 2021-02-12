@@ -1,0 +1,13 @@
+14:48:54 INFO  - App version: 0.0.3
+14:49:15 INFO  - Start test isCreateScheduleClickable
+14:49:18 INFO  - Finish test isCreateScheduleClickable
+ ********
+14:49:18 INFO  - Start test isDrivingCostsClickable
+14:49:29 INFO  - Finish test isDrivingCostsClickable
+ ********
+14:49:29 INFO  - Start test isEventListButtonClickable
+14:49:40 INFO  - Finish test isEventListButtonClickable
+ ********
+14:49:40 INFO  - Start test isMenuButtonClickable
+14:49:50 INFO  - Finish test isMenuButtonClickable
+ ********

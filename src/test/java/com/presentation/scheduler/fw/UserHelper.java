@@ -59,9 +59,19 @@ public class UserHelper extends HelperBase {
         typeByCss("[name=password]", user.getPassword());
     }
 
+    public void clickAddButton() {
+        click(By.xpath("//*[@resource-id = 'com.example.svetlana.scheduler:id/long_term_fr_save_btn']"));
+    }
 
-    public void clickLogoutButtonOnHeader() {
-        click(By.xpath("//a[contains(., 'logOut')]"));
+    public boolean isScheduleCreate() {
+        String addButton = "//*[@resource-id = 'com.example.svetlana.scheduler:id/long_term_fr_save_btn']";
+        new WebDriverWait(driver, 15).until(ExpectedConditions.presenceOfElementLocated(By.xpath(addButton)));
+        return isElementPresent(By.xpath(addButton));
+    }
+
+    public void clickLogoutButton() {
+
+        click(By.xpath("//*[@resource-id = 'com.example.svetlana.scheduler:id/nav_fr_logout']"));
     }
 
     public boolean isUserLoggedIn() {
@@ -72,21 +82,47 @@ public class UserHelper extends HelperBase {
     }
 
     public void logOut() {
-        clickLogoutButtonOnHeader();
+        clickMenuButton();
+        clickLogoutButton();
     }
 
     public void logIn(User user) {
-        type(By.xpath("//*[@resource-id='com.example.svetlana.scheduler:id/log_email_input']"),user.getEmail());
-        type(By.xpath("//*[@resource-id='com.example.svetlana.scheduler:id/log_password_input']"),user.getPassword());
+        type(By.xpath("//*[@resource-id='com.example.svetlana.scheduler:id/log_email_input']"), user.getEmail());
+        type(By.xpath("//*[@resource-id='com.example.svetlana.scheduler:id/log_password_input']"), user.getPassword());
         driver.hideKeyboard();
         click(By.xpath("//*[@resource-id = 'com.example.svetlana.scheduler:id/login_btn']"));
 
     }
-    public void skipSettings(){
+
+    public void skipSettings() {
 
         String skipButton = "//*[@resource-id='com.example.svetlana.scheduler:id/wizard_settings_skip_container']";
-        if(isElementPresent(By.xpath(skipButton))){
+        if (isElementPresent(By.xpath(skipButton))) {
             click(By.xpath(skipButton));
         }
+    }
+
+    public void clickMenuButton() {
+        click(By.xpath("//android.widget.ImageButton[@content-desc='Open']"));
+    }
+
+    public void clickEventList() {
+        click(By.xpath("//*[@resource-id = 'com.example.svetlana.scheduler:id/nav_fr_event_list']"));
+    }
+
+    public boolean isMenuAvailable() {
+        return isElementPresent(By.xpath("//android.widget.ImageButton[@content-desc='Close']"));
+    }
+
+    public void clickCreateSchedulerButton() {
+        click(By.xpath("//*[@resource-id = 'com.example.svetlana.scheduler:id/nav_fr_schedule']"));
+    }
+
+    public boolean isDriveCostsClickable() {
+        return isElementPresent(By.xpath("//*[contains(., 'DRIVING COSTS')]"));
+    }
+
+    public void clickDrivingCosts() {
+        click(By.xpath("//*[@resource-id = 'com.example.svetlana.scheduler:id/nav_fr_driving']"));
     }
 }
