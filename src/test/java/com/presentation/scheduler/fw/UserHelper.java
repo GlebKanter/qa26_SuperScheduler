@@ -3,6 +3,7 @@ package com.presentation.scheduler.fw;
 
 import com.presentation.scheduler.model.User;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -111,7 +112,8 @@ public class UserHelper extends HelperBase {
     }
 
     public boolean isMenuAvailable() {
-        return isElementPresent(By.xpath("//android.widget.ImageButton[@content-desc='Close']"));
+        MobileElement element = (MobileElement) driver.findElementsByAccessibilityId("Close");
+        return element != null;
     }
 
     public void clickCreateSchedulerButton() {
@@ -119,7 +121,7 @@ public class UserHelper extends HelperBase {
     }
 
     public boolean isDriveCostsClickable() {
-        return isElementPresent(By.xpath("//*[contains(., 'DRIVING COSTS')]"));
+        return isElementPresent(By.xpath("//*[@text = 'DRIVING COSTS']"));
     }
 
     public void clickDrivingCosts() {

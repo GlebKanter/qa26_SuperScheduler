@@ -35,8 +35,9 @@ public class MenuButtonTests extends TestBase {
     }
 
     @Test (priority = 3)
-    public void isDrivingCostsClickable(){
+    public void isDrivingCostsClickable() throws InterruptedException {
         app.getUserHelper().clickDrivingCosts();
+        app.getUserHelper().pause(2000);
         Assert.assertTrue(app.getUserHelper().isDriveCostsClickable());
     }
 
