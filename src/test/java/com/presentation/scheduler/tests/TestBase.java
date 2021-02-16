@@ -39,7 +39,7 @@ public class TestBase {
     }
 
     @AfterSuite(enabled = false)
-    public void tearDown() {
+    public void tearDown() throws IOException {
         app.stop();
     }
 

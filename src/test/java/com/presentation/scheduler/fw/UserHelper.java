@@ -5,7 +5,6 @@ import com.presentation.scheduler.model.User;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -77,7 +76,7 @@ public class UserHelper extends HelperBase {
 
     public boolean isUserLoggedIn() {
 
-        String plusButton = "//*[@resource-id='com.example.svetlana.scheduler:id/fab_main']";
+        String plusButton = "//android.widget.ImageButton[@content-desc='Open']";
         new WebDriverWait(driver, 15).until(ExpectedConditions.presenceOfElementLocated(By.xpath(plusButton)));
         return isElementPresent(By.xpath(plusButton));
     }
@@ -112,7 +111,7 @@ public class UserHelper extends HelperBase {
     }
 
     public boolean isMenuAvailable() {
-        MobileElement element = (MobileElement) driver.findElementsByAccessibilityId("Close");
+        MobileElement element = (MobileElement) driver.findElementByAccessibilityId("Close");
         return element != null;
     }
 
@@ -127,4 +126,24 @@ public class UserHelper extends HelperBase {
     public void clickDrivingCosts() {
         click(By.xpath("//*[@resource-id = 'com.example.svetlana.scheduler:id/nav_fr_driving']"));
     }
+
+    public boolean isEventsAvailable() {
+        MobileElement element = (MobileElement) driver.findElementByXPath("//*[@text='DATE']");
+        return element != null;
+    }
+
+    public void changeDay(String date) {
+        selectNextDay();
+    }
+
+    public void addCost(String cost) {
+        click(By.xpath("//*[@resource-id = 'com.example.svetlana.scheduler:id/info_wage_edit']"));
+
+        type((By.xpath("//*[@resource-id='com.example.svetlana.scheduler:id/info_wage_input']")),cost);               //String.valueOf(event.getAmmount()));
+
+        click(By.xpath("//*[@resource-id = 'com.example.svetlana.scheduler:id/info_wage_save']"));
+
+
+    }
 }
+
